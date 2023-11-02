@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Rock, Paper, Scissors Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Rock, Paper, Scissors Game</h1>
+        <img src="images.jpg" alt="Image to Spin" class="spin-image">
+        <h2>what is your choice</h2>
+        <div class="button-container">
+            <button class="animation-button" id="rock">Rock</button>
+            <button class="animation-button" id="paper">Paper</button>
+            <button class="animation-button" id="scissors">Scissors</button>
+        </div>
+        <div id="output"></div>
+    </div>
+
+    <script>
+        const outputDiv = document.getElementById('output');
+
+        // Add event listeners to the buttons
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach((button) => {
+            button.addEventListener('click', function () {
+                const choice = button.id;
+                const result = playGame(choice);
+                outputDiv.innerText = result;
+            });
+        });
+
+        function playGame(userChoice) {
+            const choices = ['rock', 'paper', 'scissors'];
+            const computerChoice = choices[Math.floor(Math.random() * 3)];
+
+            let userMark = 1;
+            let computerMark = 1;
+
+            if (userChoice === computerChoice) {
+                return `Tie the match - usermark is: ${userMark}, computerark is: ${computerMark}`;
+            } else if (userChoice === 'rock') {
+                if (computerChoice === 'scissors') {
+                    userMark++;
+                } else {
+                    computerMark++;
+                }
+            } else if (userChoice === 'paper') {
+                if (computerChoice === 'rock') {
+                    userMark++;
+                } else {
+                    computerMark++;
+                }
+            } else if (userChoice === 'scissors') {
+                if (computerChoice === 'paper') {
+                    userMark++;
+                } else {
+                    computerMark++;
+                }
+            } else {
+                return 'Invalid choice. Please choose rock, paper, or scissors.';
+            }
+
+            return `you chose ${userChoice}, Rasel chose ${computerChoice} usermark is: ${userMark}, Rasel's mark is: ${computerMark}`;
+        }
+    </script>
+</body>
+
+</html>
